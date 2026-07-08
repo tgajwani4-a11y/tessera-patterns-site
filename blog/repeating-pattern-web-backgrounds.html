@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Choose a Repeating Pattern for Web Backgrounds | Tessera</title>
+<meta name="description" content="How to pick a tileable pattern for a website background without hurting load time, readability, or accessibility — plus the CSS you need to tile it correctly.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--base:#EDEEF2;--ink:#14161A;--coral:#FF5A36;--indigo:#4B3F72;--lime:#C4D93B;--card:#FFFFFF;--line:#D6D8E0;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--base);color:var(--ink);font-family:'Space Grotesk',sans-serif;line-height:1.6;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px;}
+  header{border-bottom:2px solid var(--ink);padding:20px 0;}
+  header .wrap{display:flex;justify-content:space-between;align-items:center;}
+  header a{color:var(--ink);text-decoration:none;font-weight:700;font-size:18px;}
+  .backlink{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--indigo);}
+  article{padding:48px 0;}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--indigo);margin-bottom:14px;}
+  h1{font-size:clamp(28px,4vw,42px);line-height:1.1;margin:0 0 20px;}
+  .meta{font-family:'JetBrains Mono',monospace;font-size:12px;color:#585c68;margin-bottom:32px;}
+  h2{font-size:22px;margin:36px 0 12px;}
+  p{font-size:16px;color:#2a2d33;margin:0 0 18px;}
+  code{background:#e2e4ea;padding:2px 6px;font-family:'JetBrains Mono',monospace;font-size:14px;}
+  pre{background:var(--ink);color:#F5F4F0;padding:18px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:13px;margin:0 0 20px;}
+  ul{padding-left:20px;}
+  li{font-size:16px;color:#2a2d33;margin-bottom:8px;}
+  .cta{background:var(--ink);color:#F5F4F0;padding:28px;margin:40px 0;text-align:center;}
+  .cta p{color:#C9CBD4;margin-bottom:16px;}
+  .btn{display:inline-block;background:var(--coral);color:#fff;text-decoration:none;font-weight:700;padding:12px 22px;font-size:14px;}
+  footer{border-top:2px solid var(--ink);padding:24px 0 40px;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#585c68;}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a href="../index.html">TESSERA</a><a class="backlink" href="../index.html">← back to patterns</a></div></header>
+
+<article class="wrap">
+  <div class="eyebrow">Web design guide</div>
+  <h1>How to Choose a Repeating Pattern for Web Backgrounds</h1>
+  <div class="meta mono">6 min read</div>
+
+  <p>A subtle repeating pattern can add texture to a website without competing with the content sitting on top of it. A loud one can tank readability, slow down page load, and look dated within a year. The difference usually comes down to a handful of decisions made before the pattern ever touches CSS.</p>
+
+  <h2>Contrast: the background should lose, always</h2>
+  <p>The single most common mistake is picking a pattern that's interesting enough to distract from the actual content. A background pattern should sit far enough back — in contrast, in scale, in color saturation — that a reader's eye never has to choose between it and your text. If you find yourself squinting to read body copy over a background, the pattern needs to be quieter, not the text bolder.</p>
+
+  <h2>File size and format</h2>
+  <p>A single small pattern tile, repeated via CSS, is dramatically lighter than a large background image — this is one of the rare cases where "seamless and tileable" is also the performance-friendly choice. A well-optimized PNG tile is typically under 200KB even at high resolution, and because it's repeated rather than stretched, you only pay that cost once regardless of screen size.</p>
+
+  <h2>The CSS to actually tile it</h2>
+  <p>Once you have a seamless tile, the implementation is simple:</p>
+  <pre>body {
+  background-image: url('pattern.png');
+  background-repeat: repeat;
+  background-size: 400px 400px; /* tune to taste */
+}</pre>
+  <p>The <code>background-size</code> value controls how large each tile renders — smaller values make the pattern feel denser and busier, larger values make it feel more like a subtle texture. For most background use cases, larger and quieter reads better than small and busy.</p>
+
+  <h2>Accessibility considerations</h2>
+  <ul>
+    <li><strong>Contrast ratio still applies.</strong> Text over a patterned background needs to meet the same WCAG contrast requirements as text over a solid color — test against the pattern's lightest and darkest points, not just its average tone.</li>
+    <li><strong>Respect reduced-motion and reduced-transparency preferences</strong> if the pattern is animated or layered with opacity effects.</li>
+    <li><strong>Test with real content, not lorem ipsum</strong> — actual paragraph lengths and heading sizes interact with a background differently than placeholder text.</li>
+  </ul>
+
+  <h2>Where patterns work best on a site</h2>
+  <p>Full-page backgrounds are the highest-risk placement. Patterns tend to work better in more contained areas: a hero section, a footer, a card background, or a section divider — places where the pattern can add character without fighting for attention across an entire page of reading.</p>
+
+  <div class="cta">
+    <p>Tessera's patterns are generated at 3000×3000px and built to tile without a visible seam — light enough for web use, sharp enough for print if you need it later.</p>
+    <a class="btn" href="../index.html">Browse the pattern packs</a>
+  </div>
+</article>
+
+<footer><div class="wrap">TESSERA — generative pattern packs.</div></footer>
+</body>
+</html>

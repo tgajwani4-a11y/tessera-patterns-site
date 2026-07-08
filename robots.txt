@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tgajwani4-a11y.github.io/tessera-patterns-site/sitemap.xml

@@ -239,10 +239,27 @@
   </div>
 </section>
 
+<section class="gallery-section wrap" id="vol2">
+  <div class="gallery-head">
+    <div>
+      <h2>Vol. 2 — just added</h2>
+      <p>12 more patterns: diamond grids, brick, ripple, herringbone, petal, and maze motifs, each in two colorways.</p>
+    </div>
+    <div class="price-tag mono">ONE-TIME · $19</div>
+  </div>
+  <div class="grid" id="patternGridVol2"></div>
+  <div class="btn-row" style="margin-top:24px;">
+    <a class="btn primary" href="https://buy.stripe.com/dRm00iaxJb9r8he53Lds40i" target="_blank" rel="noopener">Get Vol. 2 — $19</a>
+  </div>
+</section>
+
 <section class="final-cta wrap">
-  <h2>24 patterns. One file. Yours in a minute.</h2>
+  <h2>36 patterns across two packs. Yours in a minute.</h2>
   <p>Instant download after checkout — delivered as a single zip.</p>
-  <a class="btn primary" href="https://buy.stripe.com/cNiaEW49lcdvdBy67Pds40h" target="_blank" rel="noopener">Get the pack — $19</a>
+  <div class="btn-row" style="justify-content:center;">
+    <a class="btn primary" href="https://buy.stripe.com/cNiaEW49lcdvdBy67Pds40h" target="_blank" rel="noopener">Get Vol. 1 — $19</a>
+    <a class="btn primary" href="https://buy.stripe.com/dRm00iaxJb9r8he53Lds40i" target="_blank" rel="noopener">Get Vol. 2 — $19</a>
+  </div>
 </section>
 
 <footer>
@@ -291,6 +308,32 @@
     img.alt = name;
     div.appendChild(img);
     grid.appendChild(div);
+  });
+
+  const PATTERNS_VOL2 = [
+    'preview-vol2/tessera2_01_diamond_grid_plum.png',
+    'preview-vol2/tessera2_02_diamond_grid_plum_inv.png',
+    'preview-vol2/tessera2_03_brick_forest.png',
+    'preview-vol2/tessera2_04_brick_forest_inv.png',
+    'preview-vol2/tessera2_05_ripple_rust.png',
+    'preview-vol2/tessera2_06_ripple_rust_inv.png',
+    'preview-vol2/tessera2_07_herringbone_denim.png',
+    'preview-vol2/tessera2_08_herringbone_denim_inv.png',
+    'preview-vol2/tessera2_09_petal_charcoal.png',
+    'preview-vol2/tessera2_10_petal_charcoal_inv.png',
+    'preview-vol2/tessera2_11_maze_blush.png',
+    'preview-vol2/tessera2_12_maze_blush_inv.png'
+  ];
+  const gridVol2 = document.getElementById('patternGridVol2');
+  PATTERNS_VOL2.forEach(path=>{
+    const div = document.createElement('div');
+    div.className = 'tile';
+    const img = document.createElement('img');
+    img.src = path;
+    img.loading = 'lazy';
+    img.alt = path;
+    div.appendChild(img);
+    gridVol2.appendChild(div);
   });
 
   // Hero canvas: draw a tiled mosaic of one pattern at a time, click to cycle

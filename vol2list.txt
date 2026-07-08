@@ -1,0 +1,12 @@
+    'preview-vol2/tessera2_01_diamond_grid_plum.png',
+    'preview-vol2/tessera2_02_diamond_grid_plum_inv.png',
+    'preview-vol2/tessera2_03_brick_forest.png',
+    'preview-vol2/tessera2_04_brick_forest_inv.png',
+    'preview-vol2/tessera2_05_ripple_rust.png',
+    'preview-vol2/tessera2_06_ripple_rust_inv.png',
+    'preview-vol2/tessera2_07_herringbone_denim.png',
+    'preview-vol2/tessera2_08_herringbone_denim_inv.png',
+    'preview-vol2/tessera2_09_petal_charcoal.png',
+    'preview-vol2/tessera2_10_petal_charcoal_inv.png',
+    'preview-vol2/tessera2_11_maze_blush.png',
+    'preview-vol2/tessera2_12_maze_blush_inv.png'

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tessera — Seamless Generative Pattern Packs</title>
+<meta name="description" content="24 seamless, tileable generative patterns for packaging, fabric, print, and web. Commercial license. Instant download, $19.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --base:#EDEEF2;
+    --ink:#14161A;
+    --coral:#FF5A36;
+    --indigo:#4B3F72;
+    --lime:#C4D93B;
+    --card:#FFFFFF;
+    --line:#D6D8E0;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--base);
+    color:var(--ink);
+    font-family:'Space Grotesk',sans-serif;
+  }
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:0;
+    border-bottom:2px solid var(--ink);
+  }
+  #tileCanvas{
+    display:block;
+    width:100%;
+    height:420px;
+    image-rendering:pixelated;
+  }
+  .hero-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    background:linear-gradient(100deg, rgba(20,22,26,0.88) 0%, rgba(20,22,26,0.55) 45%, rgba(20,22,26,0.1) 75%);
+  }
+  .hero-copy{padding:0 40px;max-width:640px;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--lime);
+    margin-bottom:16px;
+  }
+  .hero-copy h1{
+    font-size:clamp(30px,4.6vw,50px);
+    line-height:1.06;
+    margin:0 0 18px;
+    color:#F5F4F0;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+  .hero-copy p{
+    color:#C9CBD4;
+    font-size:15.5px;
+    max-width:48ch;
+    margin:0 0 26px;
+    line-height:1.6;
+  }
+  .swap-hint{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    color:#8f93a0;
+  }
+
+  .btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;}
+  .btn{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    padding:14px 24px;
+    text-decoration:none;
+    border:2px solid var(--ink);
+    display:inline-block;
+    cursor:pointer;
+  }
+  .btn.primary{background:var(--coral);border-color:var(--coral);color:#fff;}
+  .btn.primary:hover{background:#e04a29;}
+  .btn.ghost{background:transparent;border-color:#F5F4F0;color:#F5F4F0;}
+  .btn.ghost:hover{background:#F5F4F0;color:var(--ink);}
+
+  /* SPEC BAR */
+  .specbar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0;
+    border-bottom:2px solid var(--ink);
+    background:var(--card);
+  }
+  .spec{
+    flex:1;
+    min-width:150px;
+    padding:16px 20px;
+    border-right:1px solid var(--line);
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+  }
+  .spec b{display:block;font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;margin-bottom:2px;}
+
+  /* GALLERY */
+  .gallery-section{padding:56px 0 40px;}
+  .gallery-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:24px;flex-wrap:wrap;gap:16px;}
+  .gallery-head h2{font-size:24px;margin:0;}
+  .gallery-head p{margin:4px 0 0;color:#585c68;font-size:13.5px;}
+  .price-tag{
+    font-family:'JetBrains Mono',monospace;
+    background:var(--ink);
+    color:var(--lime);
+    padding:10px 16px;
+    font-size:14px;
+    white-space:nowrap;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:2px;
+    border:2px solid var(--ink);
+    background:var(--ink);
+  }
+  @media (max-width:820px){ .grid{grid-template-columns:repeat(3,1fr);} }
+  @media (max-width:520px){ .grid{grid-template-columns:repeat(2,1fr);} }
+  .tile{
+    aspect-ratio:1;
+    overflow:hidden;
+    position:relative;
+    background:var(--card);
+  }
+  .tile img{
+    width:100%;height:100%;object-fit:cover;
+    display:block;
+    transition:transform .35s ease;
+  }
+  .tile:hover img{transform:scale(1.12);}
+
+  /* WHY / LICENSE */
+  .cols-section{padding:48px 0;border-top:2px solid var(--ink);background:var(--card);}
+  .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+  @media (max-width:760px){.cols{grid-template-columns:1fr;}}
+  .col{padding:28px 30px;border-right:1px solid var(--line);}
+  .col:last-child{border-right:none;}
+  @media (max-width:760px){.col{border-right:none;border-bottom:1px solid var(--line);}}
+  .col .tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--indigo);
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    margin-bottom:10px;
+    display:block;
+  }
+  .col h4{margin:0 0 8px;font-size:17px;}
+  .col p{margin:0;font-size:13.5px;color:#585c68;line-height:1.55;}
+
+  /* FINAL CTA */
+  .final-cta{
+    padding:60px 0 70px;
+    text-align:center;
+  }
+  .final-cta h2{font-size:28px;margin:0 0 12px;}
+  .final-cta p{color:#585c68;font-size:14px;margin:0 0 26px;}
+
+  footer{
+    border-top:2px solid var(--ink);
+    padding:24px 0 40px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    color:#585c68;
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <canvas id="tileCanvas"></canvas>
+  <div class="hero-overlay">
+    <div class="hero-copy">
+      <div class="eyebrow">24 seamless patterns · commercial license</div>
+      <h1>Tileable patterns, generated — not stock.</h1>
+      <p>A pack of 24 seamless, high-resolution generative patterns for packaging, fabric, print, and web backgrounds. Every tile repeats edge-to-edge with zero seams, ready to drop into your file.</p>
+      <div class="btn-row">
+        <a class="btn primary" href="https://buy.stripe.com/cNiaEW49lcdvdBy67Pds40h" target="_blank" rel="noopener">Get the pack — $19</a>
+        <a class="btn ghost" href="#gallery">View all 24</a>
+      </div>
+      <div class="swap-hint mono" id="swapHint">click the canvas to cycle patterns →</div>
+    </div>
+  </div>
+</section>
+
+<div class="specbar mono">
+  <div class="spec"><b>24</b>unique patterns</div>
+  <div class="spec"><b>3000×3000</b>px PNG, seamless</div>
+  <div class="spec"><b>12</b>motifs · 2 colorways each</div>
+  <div class="spec"><b>∞</b>commercial use, no attribution</div>
+</div>
+
+<section class="gallery-section wrap" id="gallery">
+  <div class="gallery-head">
+    <div>
+      <h2>The full pack</h2>
+      <p>Dot grids, waveforms, terrazzo, hex, scallop, crosshatch, confetti, and more — each in two colorways.</p>
+    </div>
+    <div class="price-tag mono">ONE-TIME · $19</div>
+  </div>
+  <div class="grid" id="patternGrid"></div>
+</section>
+
+<section class="cols-section">
+  <div class="wrap cols">
+    <div class="col">
+      <span class="tag">01 / Seamless by construction</span>
+      <h4>No visible repeat</h4>
+      <p>Every pattern is built on a wrapped coordinate grid, so edges tile perfectly at any size — no cloning, no visible seam.</p>
+    </div>
+    <div class="col">
+      <span class="tag">02 / Full resolution</span>
+      <h4>3000×3000px PNG</h4>
+      <p>Large enough for print, packaging dielines, or full-bleed web backgrounds without upscaling artifacts.</p>
+    </div>
+    <div class="col">
+      <span class="tag">03 / Commercial license</span>
+      <h4>Use it in client work</h4>
+      <p>One purchase covers unlimited personal and commercial projects. No attribution required, no recurring fee.</p>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta wrap">
+  <h2>24 patterns. One file. Yours in a minute.</h2>
+  <p>Instant download after checkout — delivered as a single zip.</p>
+  <a class="btn primary" href="https://buy.stripe.com/cNiaEW49lcdvdBy67Pds40h" target="_blank" rel="noopener">Get the pack — $19</a>
+</section>
+
+<footer>
+  <div class="wrap">
+    TESSERA — generative pattern packs. Patterns are procedurally generated; no two packs are pulled from stock libraries. License: commercial use permitted, resale or redistribution of source files as a competing pattern pack is not permitted.
+  </div>
+</footer>
+
+<script>
+  // list of preview filenames (generated at build time)
+  const PATTERNS = [
+    'tessera_01_dot_grid_terracotta.png',
+    'tessera_02_dot_grid_terracotta_inv.png',
+    'tessera_03_stripe_wave_midnight.png',
+    'tessera_04_stripe_wave_midnight_inv.png',
+    'tessera_05_triangles_sage.png',
+    'tessera_06_triangles_sage_inv.png',
+    'tessera_07_grid_plus_clay.png',
+    'tessera_08_grid_plus_clay_inv.png',
+    'tessera_09_scallop_ink.png',
+    'tessera_10_scallop_ink_inv.png',
+    'tessera_11_zigzag_coral_teal.png',
+    'tessera_12_zigzag_coral_teal_inv.png',
+    'tessera_13_hex_terracotta.png',
+    'tessera_14_hex_terracotta_inv.png',
+    'tessera_15_checker_offset_midnight.png',
+    'tessera_16_checker_offset_midnight_inv.png',
+    'tessera_17_arches_sage.png',
+    'tessera_18_arches_sage_inv.png',
+    'tessera_19_confetti_clay.png',
+    'tessera_20_confetti_clay_inv.png',
+    'tessera_21_crosshatch_ink.png',
+    'tessera_22_crosshatch_ink_inv.png',
+    'tessera_23_terrazzo_coral_teal.png',
+    'tessera_24_terrazzo_coral_teal_inv.png'
+  ];
+
+  // Populate gallery grid
+  const grid = document.getElementById('patternGrid');
+  PATTERNS.forEach(name=>{
+    const div = document.createElement('div');
+    div.className = 'tile';
+    const img = document.createElement('img');
+    img.src = 'preview/' + name;
+    img.loading = 'lazy';
+    img.alt = name;
+    div.appendChild(img);
+    grid.appendChild(div);
+  });
+
+  // Hero canvas: draw a tiled mosaic of one pattern at a time, click to cycle
+  const canvas = document.getElementById('tileCanvas');
+  const ctx = canvas.getContext('2d');
+  let current = 0;
+
+  function sizeCanvas(){
+    canvas.width = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+  }
+
+  function drawTiled(src){
+    const img = new Image();
+    img.onload = ()=>{
+      sizeCanvas();
+      const tileSize = 220;
+      for(let y=0;y<canvas.height;y+=tileSize){
+        for(let x=0;x<canvas.width;x+=tileSize){
+          ctx.drawImage(img, x, y, tileSize, tileSize);
+        }
+      }
+    };
+    img.src = src;
+  }
+
+  function showPattern(i){
+    current = ((i % PATTERNS.length) + PATTERNS.length) % PATTERNS.length;
+    drawTiled('preview/' + PATTERNS[current]);
+  }
+
+  canvas.addEventListener('click', ()=> showPattern(current+1));
+  window.addEventListener('resize', ()=> showPattern(current));
+  showPattern(0);
+
+  let auto = setInterval(()=> showPattern(current+1), 4500);
+  canvas.addEventListener('click', ()=>{ clearInterval(auto); });
+</script>
+
+</body>
+</html>
